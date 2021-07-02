@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "phpmyadmin",
+    "password": "itera",
+    "database": "xoko_dev",
+    "host": "mysql",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "phpmyadmin",
+    "password": "itera",
+    "database": "tutorials",
+    "host": "server-database",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "mysql",
+    "host": "server-database",
+    "dialect": "mysql"
+  }
+}

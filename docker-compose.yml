@@ -1,0 +1,44 @@
+version: '3.4'
+
+
+services: 
+  mysqldb:
+    container_name: db
+    image: mysql
+    build: ./db
+    # env_file: ./api/.env
+    ports:
+      - 3307:3306
+    volumes:
+        - ./db:/data/db
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=tutorials
+      
+  server:
+    container_name: server
+    restart: on-failure
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    links:
+      - mysqldb
+    depends_on:
+      - mysqldb
+
+  client:
+    container_name: client
+    restart: always
+    build:
+      context: ./vue-js-client
+      dockerfile: Dockerfile
+    ports:
+      - '8081:8081'
+    links:
+      - mysqldb
+    depends_on:
+      - server
+    
+    
